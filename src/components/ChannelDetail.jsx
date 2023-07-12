@@ -22,7 +22,6 @@ const ChannelDetail = () => {
         );
     }, [id]);
 
-    console.log(channelDetail);
     return (
         <Box minHeight="95vh">
             <Box>
@@ -37,7 +36,7 @@ const ChannelDetail = () => {
                 {channelDetail && (
                     <ChannelCard
                         channelDetail={channelDetail}
-                        marginTop="-93px"
+                        marginTop="-120px"
                     />
                 )}
             </Box>

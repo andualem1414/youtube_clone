@@ -13,11 +13,11 @@ const VideoDetail = () => {
     const [videos, setVideos] = useState(null);
     const { id } = useParams();
     useEffect(() => {
-        fetchFromAPI(`/videos?part=snipppet,statistics&id=${id}`).then((data) =>
+        fetchFromAPI(`videos?part=snipppet,statistics&id=${id}`).then((data) =>
             setvideoDetail(data.items[0])
         );
         fetchFromAPI(
-            `/search?part=snipppet&relatedToVideoId=${id}&type=video`
+            `search?part=snipppet&relatedToVideoId=${id}&type=video`
         ).then((data) => setVideos(data.items));
     }, [id]);
 
@@ -30,34 +30,64 @@ const VideoDetail = () => {
 
     return (
         <Box minHeight="95vh">
-            <Stack direction={{ xs: "column", md: "row" }}>
+            <Stack
+                direction={{ xs: "column", md: "row" }}
+                sx={{ mr: "20px", ml: "20px" }}
+            >
                 <Box flex={1}>
                     <Box
-                        sx={{ width: "100%", position: "sticky", top: "86px" }}
+                        sx={{ width: "100%", position: "sticky", top: "80px" }}
                     >
                         <ReactPlayer
                             url={`https://www.youtube.com/watch?v=${id}`}
                             className="react-player"
                             controls
                         />
-                        <Typography
-                            color="#fff"
-                            fontWeight="bold"
-                            p={2}
-                            varient="h5"
+                        <Stack
+                            direction="row"
+                            gap="20px"
+                            justifyContent="space-between"
                         >
-                            {title}
-                        </Typography>
+                            <Typography
+                                variant="h5"
+                                color="#fff"
+                                fontWeight="bold"
+                                p={2}
+                            >
+                                {title}
+                            </Typography>
+
+                            <Stack
+                                direction="row"
+                                gap="20px"
+                                alignItems="center"
+                            >
+                                <Typography
+                                    variant="body1"
+                                    sx={{ opacity: 0.7 }}
+                                    color="#fff"
+                                >
+                                    {parseInt(viewCount).toLocaleString()} views
+                                </Typography>
+                                <Typography
+                                    variant="body1"
+                                    sx={{ opacity: 0.7 }}
+                                    color="#fff"
+                                >
+                                    {parseInt(likeCount).toLocaleString()} likes
+                                </Typography>
+                            </Stack>
+                        </Stack>
                         <Stack
                             direction="row"
                             justifyContent="space-between"
                             sx={{ color: "#fff" }}
-                            py={1}
                             px={2}
                         >
                             <Link to={`/channel/${channelId}`}>
                                 <Typography
                                     variant={{ sm: "subtitle1", md: "h6" }}
+                                    color="#fff"
                                 >
                                     {channelTitle}
                                     <CheckCircle
@@ -68,26 +98,6 @@ const VideoDetail = () => {
                                         }}
                                     />
                                 </Typography>
-                                <Stack
-                                    direction="row"
-                                    gap="20px"
-                                    alignItems="center"
-                                >
-                                    <Typography
-                                        varient="body1"
-                                        sx={{ opacity: 0.7 }}
-                                    >
-                                        {parseInt(viewCount).toLocaleString()}{" "}
-                                        views
-                                    </Typography>
-                                    <Typography
-                                        varient="body1"
-                                        sx={{ opacity: 0.7 }}
-                                    >
-                                        {parseInt(likeCount).toLocaleString()}{" "}
-                                        likes
-                                    </Typography>
-                                </Stack>
                             </Link>
                         </Stack>
                     </Box>

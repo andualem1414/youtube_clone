@@ -15,18 +15,31 @@ const SearchFeed = () => {
     }, [searchTerm]);
 
     return (
-        <Box p={2} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
-            <Typography
-                variant="h4"
-                fontWeight="bold"
-                mb={2}
-                sx={{ color: "white" }}
-            >
-                Search Results for:{" "}
-                <span style={{ color: "#F31503" }}>{searchTerm}</span> Videos
-            </Typography>
+        <Box
+            p={2}
+            sx={{
+                overflowY: "auto",
 
-            <Videos videos={videos} />
+                height: "90vh",
+                flex: 2,
+                display: "flex",
+                justifyContent: "center",
+            }}
+        >
+            <Box sx={{ width: { md: "85vw" } }}>
+                <Typography
+                    variant="h4"
+                    fontWeight="bold"
+                    mb={3}
+                    sx={{ color: "white" }}
+                >
+                    Search Results for:{" "}
+                    <span style={{ color: "#F31503" }}>{searchTerm}</span>{" "}
+                    Videos
+                </Typography>
+
+                <Videos videos={videos} />
+            </Box>
         </Box>
     );
 };

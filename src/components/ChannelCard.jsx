@@ -1,12 +1,10 @@
-import { Box, Typography, Card, CardContent, CardMedia } from "@mui/material";
+import { Box, Typography, CardContent, CardMedia } from "@mui/material";
 
 import { CheckCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 import {
     demoProfilePicture,
-    demoVideoUrl,
-    demoVideoTitle,
     demoChannelUrl,
     demoChannelTitle,
 } from "../utils/constants";
@@ -74,7 +72,7 @@ const ChannelCard = ({ channelDetail: { snippet, statistics }, marginTop }) => {
                             >
                                 {parseInt(
                                     statistics?.subscriberCount
-                                ).toLocaleString()}
+                                ).toLocaleString()}{" "}
                                 Subscribers
                             </Typography>
                         )}
